@@ -19,7 +19,19 @@
  */
 Arrow KEYBOARD_readArrows(unsigned char *keyboard) {
 	// À faire:
-	return ARROW_NEUTRAL;
+   Arrow myReturnValue = ARROW_NEUTRAL;
+   if(keyboard[0] == KEY_8){
+      myReturnValue = ARROW_UP;
+   } else if(keyboard[1] == KEY_4){
+      myReturnValue = ARROW_LEFT;
+   } else if(keyboard[1] == KEY_6){
+      myReturnValue = ARROW_RIGHT;
+   } else if(keyboard[2] == KEY_2) {
+      myReturnValue = ARROW_DOWN;
+   } else{
+      myReturnValue = ARROW_NEUTRAL;
+      }
+   return myReturnValue;
 }
 
 #ifdef TEST

@@ -1,0 +1,877 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.0.0 #6037 (Oct 31 2010) (MINGW32)
+                              4 ; This file was generated Fri Jan 13 02:12:10 2017
+                              5 ;--------------------------------------------------------
+                              6 	.module snake
+                              7 	.optsdcc -mmcs51 --model-small
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; Public variables in this module
+                             11 ;--------------------------------------------------------
+                             12 	.globl _SNAKE_turn_PARM_2
+                             13 	.globl _SNAKE_showBody
+                             14 	.globl _SNAKE_showHead
+                             15 	.globl _SNAKE_iterate_PARM_2
+                             16 	.globl _SNAKE_move
+                             17 	.globl _SNAKE_liveOrDie
+                             18 	.globl _SNAKE_turn
+                             19 	.globl _SNAKE_iterate
+                             20 ;--------------------------------------------------------
+                             21 ; special function registers
+                             22 ;--------------------------------------------------------
+                             23 	.area RSEG    (ABS,DATA)
+   0000                      24 	.org 0x0000
+                             25 ;--------------------------------------------------------
+                             26 ; special function bits
+                             27 ;--------------------------------------------------------
+                             28 	.area RSEG    (ABS,DATA)
+   0000                      29 	.org 0x0000
+                             30 ;--------------------------------------------------------
+                             31 ; overlayable register banks
+                             32 ;--------------------------------------------------------
+                             33 	.area REG_BANK_0	(REL,OVR,DATA)
+   0000                      34 	.ds 8
+                             35 ;--------------------------------------------------------
+                             36 ; internal ram data
+                             37 ;--------------------------------------------------------
+                             38 	.area DSEG    (DATA)
+   0000                      39 _SNAKE_move_sloc0_1_0:
+   0000                      40 	.ds 3
+   0003                      41 _SNAKE_liveOrDie_sloc0_1_0:
+   0003                      42 	.ds 3
+   0006                      43 _SNAKE_iterate_PARM_2:
+   0006                      44 	.ds 1
+                             45 ;--------------------------------------------------------
+                             46 ; overlayable items in internal ram 
+                             47 ;--------------------------------------------------------
+                             48 	.area	OSEG    (OVR,DATA)
+   0000                      49 _SNAKE_turn_PARM_2::
+   0000                      50 	.ds 1
+                             51 ;--------------------------------------------------------
+                             52 ; indirectly addressable internal ram data
+                             53 ;--------------------------------------------------------
+                             54 	.area ISEG    (DATA)
+                             55 ;--------------------------------------------------------
+                             56 ; absolute internal ram data
+                             57 ;--------------------------------------------------------
+                             58 	.area IABS    (ABS,DATA)
+                             59 	.area IABS    (ABS,DATA)
+                             60 ;--------------------------------------------------------
+                             61 ; bit data
+                             62 ;--------------------------------------------------------
+                             63 	.area BSEG    (BIT)
+                             64 ;--------------------------------------------------------
+                             65 ; paged external ram data
+                             66 ;--------------------------------------------------------
+                             67 	.area PSEG    (PAG,XDATA)
+                             68 ;--------------------------------------------------------
+                             69 ; external ram data
+                             70 ;--------------------------------------------------------
+                             71 	.area XSEG    (XDATA)
+                             72 ;--------------------------------------------------------
+                             73 ; absolute external ram data
+                             74 ;--------------------------------------------------------
+                             75 	.area XABS    (ABS,XDATA)
+                             76 ;--------------------------------------------------------
+                             77 ; external initialized ram data
+                             78 ;--------------------------------------------------------
+                             79 	.area XISEG   (XDATA)
+                             80 	.area HOME    (CODE)
+                             81 	.area GSINIT0 (CODE)
+                             82 	.area GSINIT1 (CODE)
+                             83 	.area GSINIT2 (CODE)
+                             84 	.area GSINIT3 (CODE)
+                             85 	.area GSINIT4 (CODE)
+                             86 	.area GSINIT5 (CODE)
+                             87 	.area GSINIT  (CODE)
+                             88 	.area GSFINAL (CODE)
+                             89 	.area CSEG    (CODE)
+                             90 ;--------------------------------------------------------
+                             91 ; global & static initialisations
+                             92 ;--------------------------------------------------------
+                             93 	.area HOME    (CODE)
+                             94 	.area GSINIT  (CODE)
+                             95 	.area GSFINAL (CODE)
+                             96 	.area GSINIT  (CODE)
+                             97 ;--------------------------------------------------------
+                             98 ; Home
+                             99 ;--------------------------------------------------------
+                            100 	.area HOME    (CODE)
+                            101 	.area HOME    (CODE)
+                            102 ;--------------------------------------------------------
+                            103 ; code
+                            104 ;--------------------------------------------------------
+                            105 	.area CSEG    (CODE)
+                            106 ;------------------------------------------------------------
+                            107 ;Allocation info for local variables in function 'SNAKE_move'
+                            108 ;------------------------------------------------------------
+                            109 ;snake                     Allocated to registers r2 r3 r4 
+                            110 ;sloc0                     Allocated with name '_SNAKE_move_sloc0_1_0'
+                            111 ;------------------------------------------------------------
+                            112 ;	../snake.c:14: void SNAKE_move(Snake *snake) {
+                            113 ;	-----------------------------------------
+                            114 ;	 function SNAKE_move
+                            115 ;	-----------------------------------------
+   0000                     116 _SNAKE_move:
+                    0002    117 	ar2 = 0x02
+                    0003    118 	ar3 = 0x03
+                    0004    119 	ar4 = 0x04
+                    0005    120 	ar5 = 0x05
+                    0006    121 	ar6 = 0x06
+                    0007    122 	ar7 = 0x07
+                    0000    123 	ar0 = 0x00
+                    0001    124 	ar1 = 0x01
+   0000 AA 82               125 	mov	r2,dpl
+   0002 AB 83               126 	mov	r3,dph
+   0004 AC F0               127 	mov	r4,b
+                            128 ;	../snake.c:17: BUFFER_in(snake->position.x);
+   0006 74 01               129 	mov	a,#0x01
+   0008 2A                  130 	add	a,r2
+   0009 FD                  131 	mov	r5,a
+   000A E4                  132 	clr	a
+   000B 3B                  133 	addc	a,r3
+   000C FE                  134 	mov	r6,a
+   000D 8C 07               135 	mov	ar7,r4
+   000F 8D 82               136 	mov	dpl,r5
+   0011 8E 83               137 	mov	dph,r6
+   0013 8F F0               138 	mov	b,r7
+   0015 12s00r00            139 	lcall	__gptrget
+   0018 F5 82               140 	mov	dpl,a
+   001A C0 02               141 	push	ar2
+   001C C0 03               142 	push	ar3
+   001E C0 04               143 	push	ar4
+   0020 12s00r00            144 	lcall	_BUFFER_in
+   0023 D0 04               145 	pop	ar4
+   0025 D0 03               146 	pop	ar3
+   0027 D0 02               147 	pop	ar2
+                            148 ;	../snake.c:18: BUFFER_in(snake->position.y);
+   0029 74 01               149 	mov	a,#0x01
+   002B 2A                  150 	add	a,r2
+   002C FD                  151 	mov	r5,a
+   002D E4                  152 	clr	a
+   002E 3B                  153 	addc	a,r3
+   002F FE                  154 	mov	r6,a
+   0030 8C 07               155 	mov	ar7,r4
+   0032 74 01               156 	mov	a,#0x01
+   0034 2D                  157 	add	a,r5
+   0035 F5*00               158 	mov	_SNAKE_move_sloc0_1_0,a
+   0037 E4                  159 	clr	a
+   0038 3E                  160 	addc	a,r6
+   0039 F5*01               161 	mov	(_SNAKE_move_sloc0_1_0 + 1),a
+   003B 8F*02               162 	mov	(_SNAKE_move_sloc0_1_0 + 2),r7
+   003D 85*00 82            163 	mov	dpl,_SNAKE_move_sloc0_1_0
+   0040 85*01 83            164 	mov	dph,(_SNAKE_move_sloc0_1_0 + 1)
+   0043 85*02 F0            165 	mov	b,(_SNAKE_move_sloc0_1_0 + 2)
+   0046 12s00r00            166 	lcall	__gptrget
+   0049 F5 82               167 	mov	dpl,a
+   004B C0 02               168 	push	ar2
+   004D C0 03               169 	push	ar3
+   004F C0 04               170 	push	ar4
+   0051 C0 05               171 	push	ar5
+   0053 C0 06               172 	push	ar6
+   0055 C0 07               173 	push	ar7
+   0057 12s00r00            174 	lcall	_BUFFER_in
+   005A D0 07               175 	pop	ar7
+   005C D0 06               176 	pop	ar6
+   005E D0 05               177 	pop	ar5
+   0060 D0 04               178 	pop	ar4
+   0062 D0 03               179 	pop	ar3
+   0064 D0 02               180 	pop	ar2
+                            181 ;	../snake.c:20: switch(snake->direction){
+   0066 8A 82               182 	mov	dpl,r2
+   0068 8B 83               183 	mov	dph,r3
+   006A 8C F0               184 	mov	b,r4
+   006C 12s00r00            185 	lcall	__gptrget
+   006F FA                  186 	mov	r2,a
+   0070 74 03               187 	mov	a,#0x03
+   0072 B5 02 00            188 	cjne	a,ar2,00110$
+   0075                     189 00110$:
+   0075 50 01               190 	jnc	00111$
+   0077 22                  191 	ret
+   0078                     192 00111$:
+   0078 EA                  193 	mov	a,r2
+   0079 2A                  194 	add	a,r2
+   007A 2A                  195 	add	a,r2
+   007B 90s00r7F            196 	mov	dptr,#00112$
+   007E 73                  197 	jmp	@a+dptr
+   007F                     198 00112$:
+   007F 02s00r8B            199 	ljmp	00101$
+   0082 02s00rA6            200 	ljmp	00102$
+   0085 02s00rC1            201 	ljmp	00103$
+   0088 02s00rD6            202 	ljmp	00104$
+                            203 ;	../snake.c:21: case(MOVES_UP): 
+   008B                     204 00101$:
+                            205 ;	../snake.c:22: snake->position.y--; 
+   008B 85*00 82            206 	mov	dpl,_SNAKE_move_sloc0_1_0
+   008E 85*01 83            207 	mov	dph,(_SNAKE_move_sloc0_1_0 + 1)
+   0091 85*02 F0            208 	mov	b,(_SNAKE_move_sloc0_1_0 + 2)
+   0094 12s00r00            209 	lcall	__gptrget
+   0097 FA                  210 	mov	r2,a
+   0098 1A                  211 	dec	r2
+   0099 85*00 82            212 	mov	dpl,_SNAKE_move_sloc0_1_0
+   009C 85*01 83            213 	mov	dph,(_SNAKE_move_sloc0_1_0 + 1)
+   009F 85*02 F0            214 	mov	b,(_SNAKE_move_sloc0_1_0 + 2)
+   00A2 EA                  215 	mov	a,r2
+                            216 ;	../snake.c:23: break;
+                            217 ;	../snake.c:24: case(MOVES_DOWN):
+   00A3 02s00r00            218 	ljmp	__gptrput
+   00A6                     219 00102$:
+                            220 ;	../snake.c:25: snake->position.y++; 
+   00A6 85*00 82            221 	mov	dpl,_SNAKE_move_sloc0_1_0
+   00A9 85*01 83            222 	mov	dph,(_SNAKE_move_sloc0_1_0 + 1)
+   00AC 85*02 F0            223 	mov	b,(_SNAKE_move_sloc0_1_0 + 2)
+   00AF 12s00r00            224 	lcall	__gptrget
+   00B2 FA                  225 	mov	r2,a
+   00B3 0A                  226 	inc	r2
+   00B4 85*00 82            227 	mov	dpl,_SNAKE_move_sloc0_1_0
+   00B7 85*01 83            228 	mov	dph,(_SNAKE_move_sloc0_1_0 + 1)
+   00BA 85*02 F0            229 	mov	b,(_SNAKE_move_sloc0_1_0 + 2)
+   00BD EA                  230 	mov	a,r2
+                            231 ;	../snake.c:26: break;
+                            232 ;	../snake.c:27: case(MOVES_LEFT):
+   00BE 02s00r00            233 	ljmp	__gptrput
+   00C1                     234 00103$:
+                            235 ;	../snake.c:28: snake->position.x--;
+   00C1 8D 82               236 	mov	dpl,r5
+   00C3 8E 83               237 	mov	dph,r6
+   00C5 8F F0               238 	mov	b,r7
+   00C7 12s00r00            239 	lcall	__gptrget
+   00CA FA                  240 	mov	r2,a
+   00CB 1A                  241 	dec	r2
+   00CC 8D 82               242 	mov	dpl,r5
+   00CE 8E 83               243 	mov	dph,r6
+   00D0 8F F0               244 	mov	b,r7
+   00D2 EA                  245 	mov	a,r2
+                            246 ;	../snake.c:29: break;
+                            247 ;	../snake.c:30: case(MOVES_RIGHT):
+   00D3 02s00r00            248 	ljmp	__gptrput
+   00D6                     249 00104$:
+                            250 ;	../snake.c:31: snake->position.x++;
+   00D6 8D 82               251 	mov	dpl,r5
+   00D8 8E 83               252 	mov	dph,r6
+   00DA 8F F0               253 	mov	b,r7
+   00DC 12s00r00            254 	lcall	__gptrget
+   00DF FA                  255 	mov	r2,a
+   00E0 0A                  256 	inc	r2
+   00E1 8D 82               257 	mov	dpl,r5
+   00E3 8E 83               258 	mov	dph,r6
+   00E5 8F F0               259 	mov	b,r7
+   00E7 EA                  260 	mov	a,r2
+                            261 ;	../snake.c:34: }
+   00E8 02s00r00            262 	ljmp	__gptrput
+                            263 ;------------------------------------------------------------
+                            264 ;Allocation info for local variables in function 'SNAKE_liveOrDie'
+                            265 ;------------------------------------------------------------
+                            266 ;snake                     Allocated to registers r2 r3 r4 
+                            267 ;c                         Allocated to registers r5 
+                            268 ;sloc0                     Allocated with name '_SNAKE_liveOrDie_sloc0_1_0'
+                            269 ;------------------------------------------------------------
+                            270 ;	../snake.c:42: void SNAKE_liveOrDie(Snake *snake) {
+                            271 ;	-----------------------------------------
+                            272 ;	 function SNAKE_liveOrDie
+                            273 ;	-----------------------------------------
+   00EB                     274 _SNAKE_liveOrDie:
+   00EB AA 82               275 	mov	r2,dpl
+   00ED AB 83               276 	mov	r3,dph
+   00EF AC F0               277 	mov	r4,b
+                            278 ;	../snake.c:43: unsigned char c = T6963C_readFrom(snake->position.x, snake->position.y);
+   00F1 74 01               279 	mov	a,#0x01
+   00F3 2A                  280 	add	a,r2
+   00F4 FD                  281 	mov	r5,a
+   00F5 E4                  282 	clr	a
+   00F6 3B                  283 	addc	a,r3
+   00F7 FE                  284 	mov	r6,a
+   00F8 8C 07               285 	mov	ar7,r4
+   00FA 8D 82               286 	mov	dpl,r5
+   00FC 8E 83               287 	mov	dph,r6
+   00FE 8F F0               288 	mov	b,r7
+   0100 12s00r00            289 	lcall	__gptrget
+   0103 FD                  290 	mov	r5,a
+   0104 74 01               291 	mov	a,#0x01
+   0106 2A                  292 	add	a,r2
+   0107 FE                  293 	mov	r6,a
+   0108 E4                  294 	clr	a
+   0109 3B                  295 	addc	a,r3
+   010A FF                  296 	mov	r7,a
+   010B 8C 00               297 	mov	ar0,r4
+   010D 74 01               298 	mov	a,#0x01
+   010F 2E                  299 	add	a,r6
+   0110 F5*03               300 	mov	_SNAKE_liveOrDie_sloc0_1_0,a
+   0112 E4                  301 	clr	a
+   0113 3F                  302 	addc	a,r7
+   0114 F5*04               303 	mov	(_SNAKE_liveOrDie_sloc0_1_0 + 1),a
+   0116 88*05               304 	mov	(_SNAKE_liveOrDie_sloc0_1_0 + 2),r0
+   0118 85*03 82            305 	mov	dpl,_SNAKE_liveOrDie_sloc0_1_0
+   011B 85*04 83            306 	mov	dph,(_SNAKE_liveOrDie_sloc0_1_0 + 1)
+   011E 85*05 F0            307 	mov	b,(_SNAKE_liveOrDie_sloc0_1_0 + 2)
+   0121 12s00r00            308 	lcall	__gptrget
+   0124 F5*00               309 	mov	_T6963C_readFrom_PARM_2,a
+   0126 8D 82               310 	mov	dpl,r5
+   0128 C0 02               311 	push	ar2
+   012A C0 03               312 	push	ar3
+   012C C0 04               313 	push	ar4
+   012E C0 06               314 	push	ar6
+   0130 C0 07               315 	push	ar7
+   0132 C0 00               316 	push	ar0
+   0134 12s00r00            317 	lcall	_T6963C_readFrom
+   0137 AD 82               318 	mov	r5,dpl
+   0139 D0 00               319 	pop	ar0
+   013B D0 07               320 	pop	ar7
+   013D D0 06               321 	pop	ar6
+   013F D0 04               322 	pop	ar4
+   0141 D0 03               323 	pop	ar3
+   0143 D0 02               324 	pop	ar2
+                            325 ;	../snake.c:47: if(snake->position.x > SNAKE_LIMIT_X0 && snake->position.y > SNAKE_LIMIT_Y0 && 
+   0145 8E 82               326 	mov	dpl,r6
+   0147 8F 83               327 	mov	dph,r7
+   0149 88 F0               328 	mov	b,r0
+   014B 12s00r00            329 	lcall	__gptrget
+   014E FE                  330 	mov	r6,a
+   014F 70 03               331 	jnz	00134$
+   0151 02s02r01            332 	ljmp	00114$
+   0154                     333 00134$:
+   0154 85*03 82            334 	mov	dpl,_SNAKE_liveOrDie_sloc0_1_0
+   0157 85*04 83            335 	mov	dph,(_SNAKE_liveOrDie_sloc0_1_0 + 1)
+   015A 85*05 F0            336 	mov	b,(_SNAKE_liveOrDie_sloc0_1_0 + 2)
+   015D 12s00r00            337 	lcall	__gptrget
+   0160 FF                  338 	mov	r7,a
+   0161 70 03               339 	jnz	00135$
+   0163 02s02r01            340 	ljmp	00114$
+   0166                     341 00135$:
+                            342 ;	../snake.c:48: snake->position.x < SNAKE_LIMIT_X1 && snake->position.y < SNAKE_LIMIT_Y1){	
+   0166 BE 1D 00            343 	cjne	r6,#0x1D,00136$
+   0169                     344 00136$:
+   0169 40 03               345 	jc	00137$
+   016B 02s02r01            346 	ljmp	00114$
+   016E                     347 00137$:
+   016E BF 0F 00            348 	cjne	r7,#0x0F,00138$
+   0171                     349 00138$:
+   0171 40 03               350 	jc	00139$
+   0173 02s02r01            351 	ljmp	00114$
+   0176                     352 00139$:
+                            353 ;	../snake.c:50: switch(c){
+   0176 BD 91 02            354 	cjne	r5,#0x91,00140$
+   0179 80 2B               355 	sjmp	00109$
+   017B                     356 00140$:
+   017B BD 95 02            357 	cjne	r5,#0x95,00141$
+   017E 80 3A               358 	sjmp	00110$
+   0180                     359 00141$:
+   0180 BD A1 02            360 	cjne	r5,#0xA1,00142$
+   0183 80 21               361 	sjmp	00109$
+   0185                     362 00142$:
+   0185 BD A2 02            363 	cjne	r5,#0xA2,00143$
+   0188 80 1C               364 	sjmp	00109$
+   018A                     365 00143$:
+   018A BD A3 02            366 	cjne	r5,#0xA3,00144$
+   018D 80 17               367 	sjmp	00109$
+   018F                     368 00144$:
+   018F BD A4 02            369 	cjne	r5,#0xA4,00145$
+   0192 80 12               370 	sjmp	00109$
+   0194                     371 00145$:
+   0194 BD A5 02            372 	cjne	r5,#0xA5,00146$
+   0197 80 0D               373 	sjmp	00109$
+   0199                     374 00146$:
+   0199 BD A6 02            375 	cjne	r5,#0xA6,00147$
+   019C 80 08               376 	sjmp	00109$
+   019E                     377 00147$:
+   019E BD A7 02            378 	cjne	r5,#0xA7,00148$
+   01A1 80 03               379 	sjmp	00109$
+   01A3                     380 00148$:
+   01A3 BD A8 48            381 	cjne	r5,#0xA8,00111$
+                            382 ;	../snake.c:59: case(SNAKE_BODY):
+   01A6                     383 00109$:
+                            384 ;	../snake.c:60: snake->status = DEAD;
+   01A6 74 03               385 	mov	a,#0x03
+   01A8 2A                  386 	add	a,r2
+   01A9 FD                  387 	mov	r5,a
+   01AA E4                  388 	clr	a
+   01AB 3B                  389 	addc	a,r3
+   01AC FE                  390 	mov	r6,a
+   01AD 8C 07               391 	mov	ar7,r4
+   01AF 8D 82               392 	mov	dpl,r5
+   01B1 8E 83               393 	mov	dph,r6
+   01B3 8F F0               394 	mov	b,r7
+   01B5 74 01               395 	mov	a,#0x01
+                            396 ;	../snake.c:61: break;
+                            397 ;	../snake.c:62: case(FRUIT):
+   01B7 02s00r00            398 	ljmp	__gptrput
+   01BA                     399 00110$:
+                            400 ;	../snake.c:63: snake->status = EATING;
+   01BA 74 03               401 	mov	a,#0x03
+   01BC 2A                  402 	add	a,r2
+   01BD FD                  403 	mov	r5,a
+   01BE E4                  404 	clr	a
+   01BF 3B                  405 	addc	a,r3
+   01C0 FE                  406 	mov	r6,a
+   01C1 8C 07               407 	mov	ar7,r4
+   01C3 8D 82               408 	mov	dpl,r5
+   01C5 8E 83               409 	mov	dph,r6
+   01C7 8F F0               410 	mov	b,r7
+   01C9 74 02               411 	mov	a,#0x02
+   01CB 12s00r00            412 	lcall	__gptrput
+                            413 ;	../snake.c:64: snake->caloriesLeft+= FRUIT_CALORIES;
+   01CE 74 04               414 	mov	a,#0x04
+   01D0 2A                  415 	add	a,r2
+   01D1 FD                  416 	mov	r5,a
+   01D2 E4                  417 	clr	a
+   01D3 3B                  418 	addc	a,r3
+   01D4 FE                  419 	mov	r6,a
+   01D5 8C 07               420 	mov	ar7,r4
+   01D7 8D 82               421 	mov	dpl,r5
+   01D9 8E 83               422 	mov	dph,r6
+   01DB 8F F0               423 	mov	b,r7
+   01DD 12s00r00            424 	lcall	__gptrget
+   01E0 F8                  425 	mov	r0,a
+   01E1 08                  426 	inc	r0
+   01E2 08                  427 	inc	r0
+   01E3 08                  428 	inc	r0
+   01E4 8D 82               429 	mov	dpl,r5
+   01E6 8E 83               430 	mov	dph,r6
+   01E8 8F F0               431 	mov	b,r7
+   01EA E8                  432 	mov	a,r0
+                            433 ;	../snake.c:65: break;
+                            434 ;	../snake.c:66: default:
+   01EB 02s00r00            435 	ljmp	__gptrput
+   01EE                     436 00111$:
+                            437 ;	../snake.c:67: snake->status = ALIVE;
+   01EE 74 03               438 	mov	a,#0x03
+   01F0 2A                  439 	add	a,r2
+   01F1 FD                  440 	mov	r5,a
+   01F2 E4                  441 	clr	a
+   01F3 3B                  442 	addc	a,r3
+   01F4 FE                  443 	mov	r6,a
+   01F5 8C 07               444 	mov	ar7,r4
+   01F7 8D 82               445 	mov	dpl,r5
+   01F9 8E 83               446 	mov	dph,r6
+   01FB 8F F0               447 	mov	b,r7
+   01FD E4                  448 	clr	a
+                            449 ;	../snake.c:69: }
+   01FE 02s00r00            450 	ljmp	__gptrput
+   0201                     451 00114$:
+                            452 ;	../snake.c:71: snake->status = DEAD;
+   0201 74 03               453 	mov	a,#0x03
+   0203 2A                  454 	add	a,r2
+   0204 FA                  455 	mov	r2,a
+   0205 E4                  456 	clr	a
+   0206 3B                  457 	addc	a,r3
+   0207 FB                  458 	mov	r3,a
+   0208 8A 82               459 	mov	dpl,r2
+   020A 8B 83               460 	mov	dph,r3
+   020C 8C F0               461 	mov	b,r4
+   020E 74 01               462 	mov	a,#0x01
+   0210 02s00r00            463 	ljmp	__gptrput
+                            464 ;------------------------------------------------------------
+                            465 ;Allocation info for local variables in function 'SNAKE_showHead'
+                            466 ;------------------------------------------------------------
+                            467 ;snake                     Allocated to registers r2 r3 r4 
+                            468 ;------------------------------------------------------------
+                            469 ;	../snake.c:79: void SNAKE_showHead(Snake *snake) {
+                            470 ;	-----------------------------------------
+                            471 ;	 function SNAKE_showHead
+                            472 ;	-----------------------------------------
+   0213                     473 _SNAKE_showHead:
+   0213 AA 82               474 	mov	r2,dpl
+   0215 AB 83               475 	mov	r3,dph
+   0217 AC F0               476 	mov	r4,b
+                            477 ;	../snake.c:83: if(snake->status == DEAD){
+   0219 74 03               478 	mov	a,#0x03
+   021B 2A                  479 	add	a,r2
+   021C FD                  480 	mov	r5,a
+   021D E4                  481 	clr	a
+   021E 3B                  482 	addc	a,r3
+   021F FE                  483 	mov	r6,a
+   0220 8C 07               484 	mov	ar7,r4
+   0222 8D 82               485 	mov	dpl,r5
+   0224 8E 83               486 	mov	dph,r6
+   0226 8F F0               487 	mov	b,r7
+   0228 12s00r00            488 	lcall	__gptrget
+   022B FD                  489 	mov	r5,a
+   022C BD 01 34            490 	cjne	r5,#0x01,00102$
+                            491 ;	../snake.c:84: T6963C_writeAt(snake->position.x, snake->position.y, SNAKE_DEAD);
+   022F 74 01               492 	mov	a,#0x01
+   0231 2A                  493 	add	a,r2
+   0232 FD                  494 	mov	r5,a
+   0233 E4                  495 	clr	a
+   0234 3B                  496 	addc	a,r3
+   0235 FE                  497 	mov	r6,a
+   0236 8C 07               498 	mov	ar7,r4
+   0238 8D 82               499 	mov	dpl,r5
+   023A 8E 83               500 	mov	dph,r6
+   023C 8F F0               501 	mov	b,r7
+   023E 12s00r00            502 	lcall	__gptrget
+   0241 FD                  503 	mov	r5,a
+   0242 74 01               504 	mov	a,#0x01
+   0244 2A                  505 	add	a,r2
+   0245 FE                  506 	mov	r6,a
+   0246 E4                  507 	clr	a
+   0247 3B                  508 	addc	a,r3
+   0248 FF                  509 	mov	r7,a
+   0249 8C 00               510 	mov	ar0,r4
+   024B 0E                  511 	inc	r6
+   024C BE 00 01            512 	cjne	r6,#0x00,00109$
+   024F 0F                  513 	inc	r7
+   0250                     514 00109$:
+   0250 8E 82               515 	mov	dpl,r6
+   0252 8F 83               516 	mov	dph,r7
+   0254 88 F0               517 	mov	b,r0
+   0256 12s00r00            518 	lcall	__gptrget
+   0259 F5*00               519 	mov	_T6963C_writeAt_PARM_2,a
+   025B 75*00 94            520 	mov	_T6963C_writeAt_PARM_3,#0x94
+   025E 8D 82               521 	mov	dpl,r5
+   0260 02s00r00            522 	ljmp	_T6963C_writeAt
+   0263                     523 00102$:
+                            524 ;	../snake.c:87: T6963C_writeAt(snake->position.x, snake->position.y, SNAKE_HEAD);
+   0263 74 01               525 	mov	a,#0x01
+   0265 2A                  526 	add	a,r2
+   0266 FD                  527 	mov	r5,a
+   0267 E4                  528 	clr	a
+   0268 3B                  529 	addc	a,r3
+   0269 FE                  530 	mov	r6,a
+   026A 8C 07               531 	mov	ar7,r4
+   026C 8D 82               532 	mov	dpl,r5
+   026E 8E 83               533 	mov	dph,r6
+   0270 8F F0               534 	mov	b,r7
+   0272 12s00r00            535 	lcall	__gptrget
+   0275 FD                  536 	mov	r5,a
+   0276 0A                  537 	inc	r2
+   0277 BA 00 01            538 	cjne	r2,#0x00,00110$
+   027A 0B                  539 	inc	r3
+   027B                     540 00110$:
+   027B 0A                  541 	inc	r2
+   027C BA 00 01            542 	cjne	r2,#0x00,00111$
+   027F 0B                  543 	inc	r3
+   0280                     544 00111$:
+   0280 8A 82               545 	mov	dpl,r2
+   0282 8B 83               546 	mov	dph,r3
+   0284 8C F0               547 	mov	b,r4
+   0286 12s00r00            548 	lcall	__gptrget
+   0289 F5*00               549 	mov	_T6963C_writeAt_PARM_2,a
+   028B 75*00 93            550 	mov	_T6963C_writeAt_PARM_3,#0x93
+   028E 8D 82               551 	mov	dpl,r5
+   0290 02s00r00            552 	ljmp	_T6963C_writeAt
+                            553 ;------------------------------------------------------------
+                            554 ;Allocation info for local variables in function 'SNAKE_showBody'
+                            555 ;------------------------------------------------------------
+                            556 ;snake                     Allocated to registers r2 r3 r4 
+                            557 ;------------------------------------------------------------
+                            558 ;	../snake.c:97: void SNAKE_showBody(Snake *snake) {
+                            559 ;	-----------------------------------------
+                            560 ;	 function SNAKE_showBody
+                            561 ;	-----------------------------------------
+   0293                     562 _SNAKE_showBody:
+   0293 AA 82               563 	mov	r2,dpl
+   0295 AB 83               564 	mov	r3,dph
+   0297 AC F0               565 	mov	r4,b
+                            566 ;	../snake.c:100: if(snake->status == EATING){
+   0299 74 03               567 	mov	a,#0x03
+   029B 2A                  568 	add	a,r2
+   029C FD                  569 	mov	r5,a
+   029D E4                  570 	clr	a
+   029E 3B                  571 	addc	a,r3
+   029F FE                  572 	mov	r6,a
+   02A0 8C 07               573 	mov	ar7,r4
+   02A2 8D 82               574 	mov	dpl,r5
+   02A4 8E 83               575 	mov	dph,r6
+   02A6 8F F0               576 	mov	b,r7
+   02A8 12s00r00            577 	lcall	__gptrget
+   02AB FD                  578 	mov	r5,a
+   02AC BD 02 42            579 	cjne	r5,#0x02,00102$
+                            580 ;	../snake.c:101: T6963C_writeAt(snake->position.x, snake->position.y, SNAKE_SWALLOW);
+   02AF 74 01               581 	mov	a,#0x01
+   02B1 2A                  582 	add	a,r2
+   02B2 FD                  583 	mov	r5,a
+   02B3 E4                  584 	clr	a
+   02B4 3B                  585 	addc	a,r3
+   02B5 FE                  586 	mov	r6,a
+   02B6 8C 07               587 	mov	ar7,r4
+   02B8 8D 82               588 	mov	dpl,r5
+   02BA 8E 83               589 	mov	dph,r6
+   02BC 8F F0               590 	mov	b,r7
+   02BE 12s00r00            591 	lcall	__gptrget
+   02C1 FD                  592 	mov	r5,a
+   02C2 74 01               593 	mov	a,#0x01
+   02C4 2A                  594 	add	a,r2
+   02C5 FE                  595 	mov	r6,a
+   02C6 E4                  596 	clr	a
+   02C7 3B                  597 	addc	a,r3
+   02C8 FF                  598 	mov	r7,a
+   02C9 8C 00               599 	mov	ar0,r4
+   02CB 0E                  600 	inc	r6
+   02CC BE 00 01            601 	cjne	r6,#0x00,00113$
+   02CF 0F                  602 	inc	r7
+   02D0                     603 00113$:
+   02D0 8E 82               604 	mov	dpl,r6
+   02D2 8F 83               605 	mov	dph,r7
+   02D4 88 F0               606 	mov	b,r0
+   02D6 12s00r00            607 	lcall	__gptrget
+   02D9 F5*00               608 	mov	_T6963C_writeAt_PARM_2,a
+   02DB 75*00 92            609 	mov	_T6963C_writeAt_PARM_3,#0x92
+   02DE 8D 82               610 	mov	dpl,r5
+   02E0 C0 02               611 	push	ar2
+   02E2 C0 03               612 	push	ar3
+   02E4 C0 04               613 	push	ar4
+   02E6 12s00r00            614 	lcall	_T6963C_writeAt
+   02E9 D0 04               615 	pop	ar4
+   02EB D0 03               616 	pop	ar3
+   02ED D0 02               617 	pop	ar2
+   02EF 80 40               618 	sjmp	00103$
+   02F1                     619 00102$:
+                            620 ;	../snake.c:104: T6963C_writeAt(snake->position.x, snake->position.y, SNAKE_BODY);
+   02F1 74 01               621 	mov	a,#0x01
+   02F3 2A                  622 	add	a,r2
+   02F4 FD                  623 	mov	r5,a
+   02F5 E4                  624 	clr	a
+   02F6 3B                  625 	addc	a,r3
+   02F7 FE                  626 	mov	r6,a
+   02F8 8C 07               627 	mov	ar7,r4
+   02FA 8D 82               628 	mov	dpl,r5
+   02FC 8E 83               629 	mov	dph,r6
+   02FE 8F F0               630 	mov	b,r7
+   0300 12s00r00            631 	lcall	__gptrget
+   0303 FD                  632 	mov	r5,a
+   0304 74 01               633 	mov	a,#0x01
+   0306 2A                  634 	add	a,r2
+   0307 FE                  635 	mov	r6,a
+   0308 E4                  636 	clr	a
+   0309 3B                  637 	addc	a,r3
+   030A FF                  638 	mov	r7,a
+   030B 8C 00               639 	mov	ar0,r4
+   030D 0E                  640 	inc	r6
+   030E BE 00 01            641 	cjne	r6,#0x00,00114$
+   0311 0F                  642 	inc	r7
+   0312                     643 00114$:
+   0312 8E 82               644 	mov	dpl,r6
+   0314 8F 83               645 	mov	dph,r7
+   0316 88 F0               646 	mov	b,r0
+   0318 12s00r00            647 	lcall	__gptrget
+   031B F5*00               648 	mov	_T6963C_writeAt_PARM_2,a
+   031D 75*00 91            649 	mov	_T6963C_writeAt_PARM_3,#0x91
+   0320 8D 82               650 	mov	dpl,r5
+   0322 C0 02               651 	push	ar2
+   0324 C0 03               652 	push	ar3
+   0326 C0 04               653 	push	ar4
+   0328 12s00r00            654 	lcall	_T6963C_writeAt
+   032B D0 04               655 	pop	ar4
+   032D D0 03               656 	pop	ar3
+   032F D0 02               657 	pop	ar2
+   0331                     658 00103$:
+                            659 ;	../snake.c:107: if(snake->caloriesLeft == 0){
+   0331 74 04               660 	mov	a,#0x04
+   0333 2A                  661 	add	a,r2
+   0334 FA                  662 	mov	r2,a
+   0335 E4                  663 	clr	a
+   0336 3B                  664 	addc	a,r3
+   0337 FB                  665 	mov	r3,a
+   0338 8A 82               666 	mov	dpl,r2
+   033A 8B 83               667 	mov	dph,r3
+   033C 8C F0               668 	mov	b,r4
+   033E 12s00r00            669 	lcall	__gptrget
+   0341 FD                  670 	mov	r5,a
+   0342 70 17               671 	jnz	00105$
+                            672 ;	../snake.c:108: T6963C_writeAt(BUFFER_out(), BUFFER_out(), EMPTY);
+   0344 12s00r00            673 	lcall	_BUFFER_out
+   0347 AE 82               674 	mov	r6,dpl
+   0349 C0 06               675 	push	ar6
+   034B 12s00r00            676 	lcall	_BUFFER_out
+   034E 85 82*00            677 	mov	_T6963C_writeAt_PARM_2,dpl
+   0351 D0 06               678 	pop	ar6
+   0353 75*00 00            679 	mov	_T6963C_writeAt_PARM_3,#0x00
+   0356 8E 82               680 	mov	dpl,r6
+   0358 02s00r00            681 	ljmp	_T6963C_writeAt
+   035B                     682 00105$:
+                            683 ;	../snake.c:110: snake->caloriesLeft--;
+   035B 1D                  684 	dec	r5
+   035C 8A 82               685 	mov	dpl,r2
+   035E 8B 83               686 	mov	dph,r3
+   0360 8C F0               687 	mov	b,r4
+   0362 ED                  688 	mov	a,r5
+   0363 02s00r00            689 	ljmp	__gptrput
+                            690 ;------------------------------------------------------------
+                            691 ;Allocation info for local variables in function 'SNAKE_turn'
+                            692 ;------------------------------------------------------------
+                            693 ;arrow                     Allocated with name '_SNAKE_turn_PARM_2'
+                            694 ;snake                     Allocated to registers r2 r3 r4 
+                            695 ;------------------------------------------------------------
+                            696 ;	../snake.c:120: void SNAKE_turn(Snake *snake, Arrow arrow) {
+                            697 ;	-----------------------------------------
+                            698 ;	 function SNAKE_turn
+                            699 ;	-----------------------------------------
+   0366                     700 _SNAKE_turn:
+   0366 AA 82               701 	mov	r2,dpl
+   0368 AB 83               702 	mov	r3,dph
+   036A AC F0               703 	mov	r4,b
+                            704 ;	../snake.c:122: switch(arrow){
+   036C 74 01               705 	mov	a,#0x01
+   036E B5*00 02            706 	cjne	a,_SNAKE_turn_PARM_2,00125$
+   0371 80 15               707 	sjmp	00101$
+   0373                     708 00125$:
+   0373 74 02               709 	mov	a,#0x02
+   0375 B5*00 02            710 	cjne	a,_SNAKE_turn_PARM_2,00126$
+   0378 80 26               711 	sjmp	00104$
+   037A                     712 00126$:
+   037A 74 03               713 	mov	a,#0x03
+   037C B5*00 02            714 	cjne	a,_SNAKE_turn_PARM_2,00127$
+   037F 80 39               715 	sjmp	00107$
+   0381                     716 00127$:
+   0381 74 04               717 	mov	a,#0x04
+                            718 ;	../snake.c:123: case(ARROW_UP): 
+   0383 B5*00 66            719 	cjne	a,_SNAKE_turn_PARM_2,00115$
+   0386 80 4B               720 	sjmp	00110$
+   0388                     721 00101$:
+                            722 ;	../snake.c:124: if(snake->direction != MOVES_DOWN){
+   0388 8A 82               723 	mov	dpl,r2
+   038A 8B 83               724 	mov	dph,r3
+   038C 8C F0               725 	mov	b,r4
+   038E 12s00r00            726 	lcall	__gptrget
+   0391 FD                  727 	mov	r5,a
+   0392 BD 01 01            728 	cjne	r5,#0x01,00129$
+   0395 22                  729 	ret
+   0396                     730 00129$:
+                            731 ;	../snake.c:125: snake->direction = MOVES_UP;
+   0396 8A 82               732 	mov	dpl,r2
+   0398 8B 83               733 	mov	dph,r3
+   039A 8C F0               734 	mov	b,r4
+   039C E4                  735 	clr	a
+                            736 ;	../snake.c:127: break;
+                            737 ;	../snake.c:128: case(ARROW_DOWN):
+   039D 02s00r00            738 	ljmp	__gptrput
+   03A0                     739 00104$:
+                            740 ;	../snake.c:129: if(snake->direction != MOVES_UP){
+   03A0 8A 82               741 	mov	dpl,r2
+   03A2 8B 83               742 	mov	dph,r3
+   03A4 8C F0               743 	mov	b,r4
+   03A6 12s00r00            744 	lcall	__gptrget
+   03A9 FD                  745 	mov	r5,a
+   03AA 7E 00               746 	mov	r6,#0x00
+   03AC 4E                  747 	orl	a,r6
+   03AD 60 3D               748 	jz	00115$
+                            749 ;	../snake.c:130: snake->direction = MOVES_DOWN;
+   03AF 8A 82               750 	mov	dpl,r2
+   03B1 8B 83               751 	mov	dph,r3
+   03B3 8C F0               752 	mov	b,r4
+   03B5 74 01               753 	mov	a,#0x01
+                            754 ;	../snake.c:132: break;
+                            755 ;	../snake.c:133: case(ARROW_LEFT):
+   03B7 02s00r00            756 	ljmp	__gptrput
+   03BA                     757 00107$:
+                            758 ;	../snake.c:134: if(snake->direction != MOVES_RIGHT){
+   03BA 8A 82               759 	mov	dpl,r2
+   03BC 8B 83               760 	mov	dph,r3
+   03BE 8C F0               761 	mov	b,r4
+   03C0 12s00r00            762 	lcall	__gptrget
+   03C3 FD                  763 	mov	r5,a
+   03C4 BD 03 01            764 	cjne	r5,#0x03,00131$
+   03C7 22                  765 	ret
+   03C8                     766 00131$:
+                            767 ;	../snake.c:135: snake->direction = MOVES_LEFT;
+   03C8 8A 82               768 	mov	dpl,r2
+   03CA 8B 83               769 	mov	dph,r3
+   03CC 8C F0               770 	mov	b,r4
+   03CE 74 02               771 	mov	a,#0x02
+                            772 ;	../snake.c:137: break;
+                            773 ;	../snake.c:138: case(ARROW_RIGHT):
+   03D0 02s00r00            774 	ljmp	__gptrput
+   03D3                     775 00110$:
+                            776 ;	../snake.c:139: if(snake->direction != MOVES_LEFT){
+   03D3 8A 82               777 	mov	dpl,r2
+   03D5 8B 83               778 	mov	dph,r3
+   03D7 8C F0               779 	mov	b,r4
+   03D9 12s00r00            780 	lcall	__gptrget
+   03DC FD                  781 	mov	r5,a
+   03DD BD 02 01            782 	cjne	r5,#0x02,00132$
+   03E0 22                  783 	ret
+   03E1                     784 00132$:
+                            785 ;	../snake.c:140: snake->direction = MOVES_RIGHT;
+   03E1 8A 82               786 	mov	dpl,r2
+   03E3 8B 83               787 	mov	dph,r3
+   03E5 8C F0               788 	mov	b,r4
+   03E7 74 03               789 	mov	a,#0x03
+                            790 ;	../snake.c:145: }
+   03E9 02s00r00            791 	ljmp	__gptrput
+   03EC                     792 00115$:
+   03EC 22                  793 	ret
+                            794 ;------------------------------------------------------------
+                            795 ;Allocation info for local variables in function 'SNAKE_iterate'
+                            796 ;------------------------------------------------------------
+                            797 ;arrow                     Allocated with name '_SNAKE_iterate_PARM_2'
+                            798 ;snake                     Allocated to registers r2 r3 r4 
+                            799 ;------------------------------------------------------------
+                            800 ;	../snake.c:155: Status SNAKE_iterate(Snake *snake, Arrow arrow) {
+                            801 ;	-----------------------------------------
+                            802 ;	 function SNAKE_iterate
+                            803 ;	-----------------------------------------
+   03ED                     804 _SNAKE_iterate:
+                            805 ;	../snake.c:156: SNAKE_showBody(snake);
+   03ED AA 82               806 	mov	r2,dpl
+   03EF AB 83               807 	mov	r3,dph
+   03F1 AC F0               808 	mov	r4,b
+   03F3 C0 02               809 	push	ar2
+   03F5 C0 03               810 	push	ar3
+   03F7 C0 04               811 	push	ar4
+   03F9 12s02r93            812 	lcall	_SNAKE_showBody
+   03FC D0 04               813 	pop	ar4
+   03FE D0 03               814 	pop	ar3
+   0400 D0 02               815 	pop	ar2
+                            816 ;	../snake.c:157: SNAKE_turn(snake, arrow);
+   0402 85*06*00            817 	mov	_SNAKE_turn_PARM_2,_SNAKE_iterate_PARM_2
+   0405 8A 82               818 	mov	dpl,r2
+   0407 8B 83               819 	mov	dph,r3
+   0409 8C F0               820 	mov	b,r4
+   040B C0 02               821 	push	ar2
+   040D C0 03               822 	push	ar3
+   040F C0 04               823 	push	ar4
+   0411 12s03r66            824 	lcall	_SNAKE_turn
+   0414 D0 04               825 	pop	ar4
+   0416 D0 03               826 	pop	ar3
+   0418 D0 02               827 	pop	ar2
+                            828 ;	../snake.c:158: SNAKE_move(snake);
+   041A 8A 82               829 	mov	dpl,r2
+   041C 8B 83               830 	mov	dph,r3
+   041E 8C F0               831 	mov	b,r4
+   0420 C0 02               832 	push	ar2
+   0422 C0 03               833 	push	ar3
+   0424 C0 04               834 	push	ar4
+   0426 12s00r00            835 	lcall	_SNAKE_move
+   0429 D0 04               836 	pop	ar4
+   042B D0 03               837 	pop	ar3
+   042D D0 02               838 	pop	ar2
+                            839 ;	../snake.c:159: SNAKE_liveOrDie(snake);
+   042F 8A 82               840 	mov	dpl,r2
+   0431 8B 83               841 	mov	dph,r3
+   0433 8C F0               842 	mov	b,r4
+   0435 C0 02               843 	push	ar2
+   0437 C0 03               844 	push	ar3
+   0439 C0 04               845 	push	ar4
+   043B 12s00rEB            846 	lcall	_SNAKE_liveOrDie
+   043E D0 04               847 	pop	ar4
+   0440 D0 03               848 	pop	ar3
+   0442 D0 02               849 	pop	ar2
+                            850 ;	../snake.c:160: SNAKE_showHead(snake);
+   0444 8A 82               851 	mov	dpl,r2
+   0446 8B 83               852 	mov	dph,r3
+   0448 8C F0               853 	mov	b,r4
+   044A C0 02               854 	push	ar2
+   044C C0 03               855 	push	ar3
+   044E C0 04               856 	push	ar4
+   0450 12s02r13            857 	lcall	_SNAKE_showHead
+   0453 D0 04               858 	pop	ar4
+   0455 D0 03               859 	pop	ar3
+   0457 D0 02               860 	pop	ar2
+                            861 ;	../snake.c:162: return snake->status;
+   0459 74 03               862 	mov	a,#0x03
+   045B 2A                  863 	add	a,r2
+   045C FA                  864 	mov	r2,a
+   045D E4                  865 	clr	a
+   045E 3B                  866 	addc	a,r3
+   045F FB                  867 	mov	r3,a
+   0460 8A 82               868 	mov	dpl,r2
+   0462 8B 83               869 	mov	dph,r3
+   0464 8C F0               870 	mov	b,r4
+   0466 12s00r00            871 	lcall	__gptrget
+   0469 F5 82               872 	mov	dpl,a
+   046B 22                  873 	ret
+                            874 	.area CSEG    (CODE)
+                            875 	.area CONST   (CODE)
+                            876 	.area XINIT   (CODE)
+                            877 	.area CABS    (ABS,CODE)

@@ -12,7 +12,28 @@
  * @param snake La description du serpent.
  */
 void SNAKE_move(Snake *snake) {
-	// À faire
+   
+   
+   // Mise en mémoire de la position du serpent
+   BUFFER_in(snake->position.x);
+   BUFFER_in(snake->position.y);
+   
+   // Calcul et mise à jour de la position du serpent selon la direction en cours
+   switch(snake->direction){
+      case(MOVES_UP): 
+	 snake->position.y--; 
+	 break;
+      case(MOVES_DOWN):
+	 snake->position.y++; 
+	 break;
+      case(MOVES_LEFT):
+	 snake->position.x--;
+	 break;
+      case(MOVES_RIGHT):
+	 snake->position.x++;
+	 break;
+	 default: break;
+      }
 }
 
 /**
@@ -21,9 +42,37 @@ void SNAKE_move(Snake *snake) {
  * @param snake La description du serpent.
  */
 void SNAKE_liveOrDie(Snake *snake) {
-	unsigned char c = T6963C_readFrom(snake->position.x, snake->position.y);
+   unsigned char c = T6963C_readFrom(snake->position.x, snake->position.y);
 
-	// À faire.
+   // Si nous sommes dans la surface de jeu nous gérons les obstacles
+   if(snake->position.x > SNAKE_LIMIT_X0 && snake->position.y > SNAKE_LIMIT_Y0 && 
+      snake->position.x < SNAKE_LIMIT_X1 && snake->position.y < SNAKE_LIMIT_Y1){	
+	 
+      // Gestion selon les obstacles
+      switch(c){
+	 case(OBSTACLE_A):
+	 case(OBSTACLE_B):
+	 case(OBSTACLE_C):
+	 case(OBSTACLE_D):
+	 case(OBSTACLE_E):
+	 case(OBSTACLE_F):
+	 case(OBSTACLE_G):
+	 case(OBSTACLE_H):
+	 case(SNAKE_BODY):
+	    snake->status = DEAD;
+	    break;
+	 case(FRUIT):
+	    snake->status = EATING;
+	    snake->caloriesLeft+= FRUIT_CALORIES;
+	    break;
+	 default:
+	    snake->status = ALIVE;
+	    break; 
+      } 
+   // les serpent est hors des limites de la surface de jeu et dans ce cas il est mort
+   }else{
+      snake->status = DEAD;
+   }
 }
 
 /**
@@ -31,7 +80,17 @@ void SNAKE_liveOrDie(Snake *snake) {
  * @param snake La définition du serpent.
  */
 void SNAKE_showHead(Snake *snake) {
-	// À faire.
+
+   
+   // La tête du en fonction de son status (Dead ou Alive) si Dead alors on affiche le caractère SNAKE_DEAD, 
+   // SNEAK_HEAD dans le cas inverse
+   if(snake->status == DEAD){
+      T6963C_writeAt(snake->position.x, snake->position.y, SNAKE_DEAD);
+   }
+   else{
+      T6963C_writeAt(snake->position.x, snake->position.y, SNAKE_HEAD);
+   }
+   
 }
 
 /**
@@ -40,7 +99,21 @@ void SNAKE_showHead(Snake *snake) {
  * @param snake La définition du serpent.
  */
 void SNAKE_showBody(Snake *snake) {
-	// À faire.
+   
+   // Le Serpent Mangent on affiche le caractère SNAKE_SWALLOW
+   if(snake->status == EATING){
+      T6963C_writeAt(snake->position.x, snake->position.y, SNAKE_SWALLOW);
+   } 
+   else{ // Le serpent ne mange pas, j'affiche le caractère SNAKE_BODY
+      T6963C_writeAt(snake->position.x, snake->position.y, SNAKE_BODY);
+   }
+   
+   // Pour Déterminer a quel moment nous devons retirer l'emplacement stocké selon l'état de caloriesLeft
+   if(snake->caloriesLeft == 0){
+      T6963C_writeAt(BUFFER_out(), BUFFER_out(), EMPTY);
+   }else{
+      snake->caloriesLeft--;
+   } 
 }
 
 /**
@@ -50,7 +123,34 @@ void SNAKE_showBody(Snake *snake) {
  * @param arrow La direction désirée.
  */
 void SNAKE_turn(Snake *snake, Arrow arrow) {
-	// À faire.
+
+      // Nous mettons à jour la direction du serpent en fonction de la direction actuel et de la touche pressée
+      switch(arrow){
+      case(ARROW_UP): 
+	 if(snake->direction != MOVES_DOWN){
+	    snake->direction = MOVES_UP;
+	 }
+	 break;
+      case(ARROW_DOWN):
+	 if(snake->direction != MOVES_UP){
+	    snake->direction = MOVES_DOWN;
+	 } 
+	 break;
+      case(ARROW_LEFT):
+	 if(snake->direction != MOVES_RIGHT){
+	    snake->direction = MOVES_LEFT;
+	 }
+	 break;
+      case(ARROW_RIGHT):
+	 if(snake->direction != MOVES_LEFT){
+	    snake->direction = MOVES_RIGHT;
+	 }
+	 break;
+	 default: 
+	    break;
+   }
+   
+   
 }
 
 /**

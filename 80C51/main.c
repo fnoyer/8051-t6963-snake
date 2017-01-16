@@ -6,6 +6,8 @@
 #include "keyboard.h"
 #include "fruit.h"
 #include "gameboard.h"
+#include <time.h>	// Pour la creation de valeur aleatoire
+
 
 // Snake-0
 
@@ -39,7 +41,6 @@ void play() {
 }
 
 void main(void) {
-
 	initialize();
 	play();
 
@@ -49,6 +50,7 @@ void main(void) {
 #else
 #include <stdio.h>
 void main(void) {
+   
 	int testsInError = 0;
 	STDIO_initialize();
 

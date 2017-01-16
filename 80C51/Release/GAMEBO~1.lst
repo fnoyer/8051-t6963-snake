@@ -1,0 +1,634 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.0.0 #6037 (Oct 31 2010) (MINGW32)
+                              4 ; This file was generated Fri Jan 13 02:12:10 2017
+                              5 ;--------------------------------------------------------
+                              6 	.module gameboard
+                              7 	.optsdcc -mmcs51 --model-small
+                              8 	
+                              9 ;--------------------------------------------------------
+                             10 ; Public variables in this module
+                             11 ;--------------------------------------------------------
+                             12 	.globl _GMB_copyFromRomToCg
+                             13 	.globl _GMB_display_PARM_3
+                             14 	.globl _GMB_display_PARM_2
+                             15 	.globl _GMB_clear_PARM_4
+                             16 	.globl _GMB_clear_PARM_3
+                             17 	.globl _GMB_clear_PARM_2
+                             18 	.globl _GMB_draw_PARM_4
+                             19 	.globl _GMB_draw_PARM_3
+                             20 	.globl _GMB_draw_PARM_2
+                             21 	.globl _GMB_copyFromRomToCg_PARM_2
+                             22 	.globl _GMB_initialize
+                             23 	.globl _GMB_draw
+                             24 	.globl _GMB_clear
+                             25 	.globl _GMB_display
+                             26 ;--------------------------------------------------------
+                             27 ; special function registers
+                             28 ;--------------------------------------------------------
+                             29 	.area RSEG    (ABS,DATA)
+   0000                      30 	.org 0x0000
+                             31 ;--------------------------------------------------------
+                             32 ; special function bits
+                             33 ;--------------------------------------------------------
+                             34 	.area RSEG    (ABS,DATA)
+   0000                      35 	.org 0x0000
+                             36 ;--------------------------------------------------------
+                             37 ; overlayable register banks
+                             38 ;--------------------------------------------------------
+                             39 	.area REG_BANK_0	(REL,OVR,DATA)
+   0000                      40 	.ds 8
+                             41 ;--------------------------------------------------------
+                             42 ; internal ram data
+                             43 ;--------------------------------------------------------
+                             44 	.area DSEG    (DATA)
+   0000                      45 _GMB_copyFromRomToCg_PARM_2:
+   0000                      46 	.ds 1
+   0001                      47 _GMB_draw_PARM_2:
+   0001                      48 	.ds 1
+   0002                      49 _GMB_draw_PARM_3:
+   0002                      50 	.ds 1
+   0003                      51 _GMB_draw_PARM_4:
+   0003                      52 	.ds 1
+   0004                      53 _GMB_clear_PARM_2:
+   0004                      54 	.ds 1
+   0005                      55 _GMB_clear_PARM_3:
+   0005                      56 	.ds 1
+   0006                      57 _GMB_clear_PARM_4:
+   0006                      58 	.ds 1
+   0007                      59 _GMB_display_PARM_2:
+   0007                      60 	.ds 1
+   0008                      61 _GMB_display_PARM_3:
+   0008                      62 	.ds 3
+   000B                      63 _GMB_display_taille_1_1:
+   000B                      64 	.ds 1
+                             65 ;--------------------------------------------------------
+                             66 ; overlayable items in internal ram 
+                             67 ;--------------------------------------------------------
+                             68 	.area OSEG    (OVR,DATA)
+                             69 ;--------------------------------------------------------
+                             70 ; indirectly addressable internal ram data
+                             71 ;--------------------------------------------------------
+                             72 	.area ISEG    (DATA)
+                             73 ;--------------------------------------------------------
+                             74 ; absolute internal ram data
+                             75 ;--------------------------------------------------------
+                             76 	.area IABS    (ABS,DATA)
+                             77 	.area IABS    (ABS,DATA)
+                             78 ;--------------------------------------------------------
+                             79 ; bit data
+                             80 ;--------------------------------------------------------
+                             81 	.area BSEG    (BIT)
+                             82 ;--------------------------------------------------------
+                             83 ; paged external ram data
+                             84 ;--------------------------------------------------------
+                             85 	.area PSEG    (PAG,XDATA)
+                             86 ;--------------------------------------------------------
+                             87 ; external ram data
+                             88 ;--------------------------------------------------------
+                             89 	.area XSEG    (XDATA)
+                             90 ;--------------------------------------------------------
+                             91 ; absolute external ram data
+                             92 ;--------------------------------------------------------
+                             93 	.area XABS    (ABS,XDATA)
+                             94 ;--------------------------------------------------------
+                             95 ; external initialized ram data
+                             96 ;--------------------------------------------------------
+                             97 	.area XISEG   (XDATA)
+                             98 	.area HOME    (CODE)
+                             99 	.area GSINIT0 (CODE)
+                            100 	.area GSINIT1 (CODE)
+                            101 	.area GSINIT2 (CODE)
+                            102 	.area GSINIT3 (CODE)
+                            103 	.area GSINIT4 (CODE)
+                            104 	.area GSINIT5 (CODE)
+                            105 	.area GSINIT  (CODE)
+                            106 	.area GSFINAL (CODE)
+                            107 	.area CSEG    (CODE)
+                            108 ;--------------------------------------------------------
+                            109 ; global & static initialisations
+                            110 ;--------------------------------------------------------
+                            111 	.area HOME    (CODE)
+                            112 	.area GSINIT  (CODE)
+                            113 	.area GSFINAL (CODE)
+                            114 	.area GSINIT  (CODE)
+                            115 ;--------------------------------------------------------
+                            116 ; Home
+                            117 ;--------------------------------------------------------
+                            118 	.area HOME    (CODE)
+                            119 	.area HOME    (CODE)
+                            120 ;--------------------------------------------------------
+                            121 ; code
+                            122 ;--------------------------------------------------------
+                            123 	.area CSEG    (CODE)
+                            124 ;------------------------------------------------------------
+                            125 ;Allocation info for local variables in function 'GMB_copyFromRomToCg'
+                            126 ;------------------------------------------------------------
+                            127 ;cgCode                    Allocated with name '_GMB_copyFromRomToCg_PARM_2'
+                            128 ;positionInRom             Allocated to registers r2 
+                            129 ;rom_cg_address            Allocated to registers 
+                            130 ;video_cg_address          Allocated to registers 
+                            131 ;------------------------------------------------------------
+                            132 ;	../gameboard.c:15: void GMB_copyFromRomToCg(unsigned char positionInRom, unsigned char cgCode) {
+                            133 ;	-----------------------------------------
+                            134 ;	 function GMB_copyFromRomToCg
+                            135 ;	-----------------------------------------
+   0000                     136 _GMB_copyFromRomToCg:
+                    0002    137 	ar2 = 0x02
+                    0003    138 	ar3 = 0x03
+                    0004    139 	ar4 = 0x04
+                    0005    140 	ar5 = 0x05
+                    0006    141 	ar6 = 0x06
+                    0007    142 	ar7 = 0x07
+                    0000    143 	ar0 = 0x00
+                    0001    144 	ar1 = 0x01
+                            145 ;	../gameboard.c:16: unsigned char *rom_cg_address = (unsigned char __xdata *) (ROM_CG_ADDRESS + positionInRom * 8);
+   0000 E5 82               146 	mov	a,dpl
+   0002 75 F0 08            147 	mov	b,#0x08
+   0005 A4                  148 	mul	ab
+   0006 FA                  149 	mov	r2,a
+   0007 AB F0               150 	mov	r3,b
+   0009 8A*00               151 	mov	_T6963C_autoWrite_PARM_2,r2
+   000B 8B*01               152 	mov	(_T6963C_autoWrite_PARM_2 + 1),r3
+   000D 75*02 00            153 	mov	(_T6963C_autoWrite_PARM_2 + 2),#0x00
+                            154 ;	../gameboard.c:17: unsigned int video_cg_address = cgCode * 8 + T6963C_ZONE_CG;
+   0010 E5*00               155 	mov	a,_GMB_copyFromRomToCg_PARM_2
+   0012 75 F0 08            156 	mov	b,#0x08
+   0015 A4                  157 	mul	ab
+   0016 F5 82               158 	mov	dpl,a
+   0018 74 18               159 	mov	a,#0x18
+   001A 25 F0               160 	add	a,b
+   001C F5 83               161 	mov	dph,a
+                            162 ;	../gameboard.c:18: T6963C_autoWrite(video_cg_address, rom_cg_address, 8);
+   001E 75*00 08            163 	mov	_T6963C_autoWrite_PARM_3,#0x08
+   0021 75*01 00            164 	mov	(_T6963C_autoWrite_PARM_3 + 1),#0x00
+   0024 02s00r00            165 	ljmp	_T6963C_autoWrite
+                            166 ;------------------------------------------------------------
+                            167 ;Allocation info for local variables in function 'GMB_initialize'
+                            168 ;------------------------------------------------------------
+                            169 ;------------------------------------------------------------
+                            170 ;	../gameboard.c:24: void GMB_initialize() {
+                            171 ;	-----------------------------------------
+                            172 ;	 function GMB_initialize
+                            173 ;	-----------------------------------------
+   0027                     174 _GMB_initialize:
+                            175 ;	../gameboard.c:25: GMB_copyFromRomToCg( 0, OBSTACLE_A);
+   0027 75*00 A1            176 	mov	_GMB_copyFromRomToCg_PARM_2,#0xA1
+   002A 75 82 00            177 	mov	dpl,#0x00
+   002D 12s00r00            178 	lcall	_GMB_copyFromRomToCg
+                            179 ;	../gameboard.c:26: GMB_copyFromRomToCg( 1, OBSTACLE_B);
+   0030 75*00 A2            180 	mov	_GMB_copyFromRomToCg_PARM_2,#0xA2
+   0033 75 82 01            181 	mov	dpl,#0x01
+   0036 12s00r00            182 	lcall	_GMB_copyFromRomToCg
+                            183 ;	../gameboard.c:27: GMB_copyFromRomToCg( 2, OBSTACLE_C);
+   0039 75*00 A3            184 	mov	_GMB_copyFromRomToCg_PARM_2,#0xA3
+   003C 75 82 02            185 	mov	dpl,#0x02
+   003F 12s00r00            186 	lcall	_GMB_copyFromRomToCg
+                            187 ;	../gameboard.c:28: GMB_copyFromRomToCg( 3, OBSTACLE_D);
+   0042 75*00 A4            188 	mov	_GMB_copyFromRomToCg_PARM_2,#0xA4
+   0045 75 82 03            189 	mov	dpl,#0x03
+   0048 12s00r00            190 	lcall	_GMB_copyFromRomToCg
+                            191 ;	../gameboard.c:29: GMB_copyFromRomToCg( 4, OBSTACLE_E);
+   004B 75*00 A5            192 	mov	_GMB_copyFromRomToCg_PARM_2,#0xA5
+   004E 75 82 04            193 	mov	dpl,#0x04
+   0051 12s00r00            194 	lcall	_GMB_copyFromRomToCg
+                            195 ;	../gameboard.c:30: GMB_copyFromRomToCg( 5, OBSTACLE_F);
+   0054 75*00 A6            196 	mov	_GMB_copyFromRomToCg_PARM_2,#0xA6
+   0057 75 82 05            197 	mov	dpl,#0x05
+   005A 12s00r00            198 	lcall	_GMB_copyFromRomToCg
+                            199 ;	../gameboard.c:31: GMB_copyFromRomToCg( 6, OBSTACLE_G);
+   005D 75*00 A7            200 	mov	_GMB_copyFromRomToCg_PARM_2,#0xA7
+   0060 75 82 06            201 	mov	dpl,#0x06
+   0063 12s00r00            202 	lcall	_GMB_copyFromRomToCg
+                            203 ;	../gameboard.c:32: GMB_copyFromRomToCg( 7, OBSTACLE_H);
+   0066 75*00 A8            204 	mov	_GMB_copyFromRomToCg_PARM_2,#0xA8
+   0069 75 82 07            205 	mov	dpl,#0x07
+   006C 12s00r00            206 	lcall	_GMB_copyFromRomToCg
+                            207 ;	../gameboard.c:34: GMB_copyFromRomToCg( 8, SNAKE_BODY);
+   006F 75*00 91            208 	mov	_GMB_copyFromRomToCg_PARM_2,#0x91
+   0072 75 82 08            209 	mov	dpl,#0x08
+   0075 12s00r00            210 	lcall	_GMB_copyFromRomToCg
+                            211 ;	../gameboard.c:35: GMB_copyFromRomToCg( 9, SNAKE_SWALLOW);
+   0078 75*00 92            212 	mov	_GMB_copyFromRomToCg_PARM_2,#0x92
+   007B 75 82 09            213 	mov	dpl,#0x09
+   007E 12s00r00            214 	lcall	_GMB_copyFromRomToCg
+                            215 ;	../gameboard.c:36: GMB_copyFromRomToCg(10, SNAKE_HEAD);
+   0081 75*00 93            216 	mov	_GMB_copyFromRomToCg_PARM_2,#0x93
+   0084 75 82 0A            217 	mov	dpl,#0x0A
+   0087 12s00r00            218 	lcall	_GMB_copyFromRomToCg
+                            219 ;	../gameboard.c:37: GMB_copyFromRomToCg(11, SNAKE_DEAD);
+   008A 75*00 94            220 	mov	_GMB_copyFromRomToCg_PARM_2,#0x94
+   008D 75 82 0B            221 	mov	dpl,#0x0B
+   0090 12s00r00            222 	lcall	_GMB_copyFromRomToCg
+                            223 ;	../gameboard.c:39: GMB_copyFromRomToCg(12, FRUIT);
+   0093 75*00 95            224 	mov	_GMB_copyFromRomToCg_PARM_2,#0x95
+   0096 75 82 0C            225 	mov	dpl,#0x0C
+   0099 02s00r00            226 	ljmp	_GMB_copyFromRomToCg
+                            227 ;------------------------------------------------------------
+                            228 ;Allocation info for local variables in function 'GMB_draw'
+                            229 ;------------------------------------------------------------
+                            230 ;y0                        Allocated with name '_GMB_draw_PARM_2'
+                            231 ;x1                        Allocated with name '_GMB_draw_PARM_3'
+                            232 ;y1                        Allocated with name '_GMB_draw_PARM_4'
+                            233 ;x0                        Allocated to registers r2 
+                            234 ;i                         Allocated to registers r3 
+                            235 ;j                         Allocated with name '_GMB_draw_j_1_1'
+                            236 ;------------------------------------------------------------
+                            237 ;	../gameboard.c:49: void GMB_draw(unsigned char x0, unsigned char y0, unsigned char x1, unsigned char y1) {
+                            238 ;	-----------------------------------------
+                            239 ;	 function GMB_draw
+                            240 ;	-----------------------------------------
+   009C                     241 _GMB_draw:
+   009C AA 82               242 	mov	r2,dpl
+                            243 ;	../gameboard.c:58: for(i = x0; i <= x1; i++){
+   009E 8A 03               244 	mov	ar3,r2
+   00A0                     245 00113$:
+   00A0 E5*02               246 	mov	a,_GMB_draw_PARM_3
+   00A2 B5 03 00            247 	cjne	a,ar3,00140$
+   00A5                     248 00140$:
+   00A5 40 4B               249 	jc	00116$
+                            250 ;	../gameboard.c:59: if(i == x0){
+   00A7 EB                  251 	mov	a,r3
+   00A8 B5 02 15            252 	cjne	a,ar2,00105$
+                            253 ;	../gameboard.c:60: T6963C_writeAt(x0, y0, OBSTACLE_A);
+   00AB 85*01*00            254 	mov	_T6963C_writeAt_PARM_2,_GMB_draw_PARM_2
+   00AE 75*00 A1            255 	mov	_T6963C_writeAt_PARM_3,#0xA1
+   00B1 8A 82               256 	mov	dpl,r2
+   00B3 C0 02               257 	push	ar2
+   00B5 C0 03               258 	push	ar3
+   00B7 12s00r00            259 	lcall	_T6963C_writeAt
+   00BA D0 03               260 	pop	ar3
+   00BC D0 02               261 	pop	ar2
+   00BE 80 2F               262 	sjmp	00115$
+   00C0                     263 00105$:
+                            264 ;	../gameboard.c:62: else if (i < x1){
+   00C0 EB                  265 	mov	a,r3
+   00C1 B5*02 00            266 	cjne	a,_GMB_draw_PARM_3,00144$
+   00C4                     267 00144$:
+   00C4 50 15               268 	jnc	00102$
+                            269 ;	../gameboard.c:63: T6963C_writeAt(i, y0, OBSTACLE_B);
+   00C6 85*01*00            270 	mov	_T6963C_writeAt_PARM_2,_GMB_draw_PARM_2
+   00C9 75*00 A2            271 	mov	_T6963C_writeAt_PARM_3,#0xA2
+   00CC 8B 82               272 	mov	dpl,r3
+   00CE C0 02               273 	push	ar2
+   00D0 C0 03               274 	push	ar3
+   00D2 12s00r00            275 	lcall	_T6963C_writeAt
+   00D5 D0 03               276 	pop	ar3
+   00D7 D0 02               277 	pop	ar2
+   00D9 80 14               278 	sjmp	00115$
+   00DB                     279 00102$:
+                            280 ;	../gameboard.c:66: T6963C_writeAt(x1, y0, OBSTACLE_C);
+   00DB 85*01*00            281 	mov	_T6963C_writeAt_PARM_2,_GMB_draw_PARM_2
+   00DE 75*00 A3            282 	mov	_T6963C_writeAt_PARM_3,#0xA3
+   00E1 85*02 82            283 	mov	dpl,_GMB_draw_PARM_3
+   00E4 C0 02               284 	push	ar2
+   00E6 C0 03               285 	push	ar3
+   00E8 12s00r00            286 	lcall	_T6963C_writeAt
+   00EB D0 03               287 	pop	ar3
+   00ED D0 02               288 	pop	ar2
+   00EF                     289 00115$:
+                            290 ;	../gameboard.c:58: for(i = x0; i <= x1; i++){
+   00EF 0B                  291 	inc	r3
+   00F0 80 AE               292 	sjmp	00113$
+   00F2                     293 00116$:
+                            294 ;	../gameboard.c:71: for(i = x0; i <= x1; i++){
+   00F2 8A 03               295 	mov	ar3,r2
+   00F4                     296 00117$:
+   00F4 E5*02               297 	mov	a,_GMB_draw_PARM_3
+   00F6 B5 03 00            298 	cjne	a,ar3,00146$
+   00F9                     299 00146$:
+   00F9 40 4B               300 	jc	00120$
+                            301 ;	../gameboard.c:72: if(i == x0){
+   00FB EB                  302 	mov	a,r3
+   00FC B5 02 15            303 	cjne	a,ar2,00111$
+                            304 ;	../gameboard.c:73: T6963C_writeAt(x0, y1, OBSTACLE_F);
+   00FF 85*03*00            305 	mov	_T6963C_writeAt_PARM_2,_GMB_draw_PARM_4
+   0102 75*00 A6            306 	mov	_T6963C_writeAt_PARM_3,#0xA6
+   0105 8A 82               307 	mov	dpl,r2
+   0107 C0 02               308 	push	ar2
+   0109 C0 03               309 	push	ar3
+   010B 12s00r00            310 	lcall	_T6963C_writeAt
+   010E D0 03               311 	pop	ar3
+   0110 D0 02               312 	pop	ar2
+   0112 80 2F               313 	sjmp	00119$
+   0114                     314 00111$:
+                            315 ;	../gameboard.c:75: else if (i < x1){
+   0114 EB                  316 	mov	a,r3
+   0115 B5*02 00            317 	cjne	a,_GMB_draw_PARM_3,00150$
+   0118                     318 00150$:
+   0118 50 15               319 	jnc	00108$
+                            320 ;	../gameboard.c:76: T6963C_writeAt(i, y1, OBSTACLE_G);
+   011A 85*03*00            321 	mov	_T6963C_writeAt_PARM_2,_GMB_draw_PARM_4
+   011D 75*00 A7            322 	mov	_T6963C_writeAt_PARM_3,#0xA7
+   0120 8B 82               323 	mov	dpl,r3
+   0122 C0 02               324 	push	ar2
+   0124 C0 03               325 	push	ar3
+   0126 12s00r00            326 	lcall	_T6963C_writeAt
+   0129 D0 03               327 	pop	ar3
+   012B D0 02               328 	pop	ar2
+   012D 80 14               329 	sjmp	00119$
+   012F                     330 00108$:
+                            331 ;	../gameboard.c:79: T6963C_writeAt(x1, y1, OBSTACLE_H);
+   012F 85*03*00            332 	mov	_T6963C_writeAt_PARM_2,_GMB_draw_PARM_4
+   0132 75*00 A8            333 	mov	_T6963C_writeAt_PARM_3,#0xA8
+   0135 85*02 82            334 	mov	dpl,_GMB_draw_PARM_3
+   0138 C0 02               335 	push	ar2
+   013A C0 03               336 	push	ar3
+   013C 12s00r00            337 	lcall	_T6963C_writeAt
+   013F D0 03               338 	pop	ar3
+   0141 D0 02               339 	pop	ar2
+   0143                     340 00119$:
+                            341 ;	../gameboard.c:71: for(i = x0; i <= x1; i++){
+   0143 0B                  342 	inc	r3
+   0144 80 AE               343 	sjmp	00117$
+   0146                     344 00120$:
+                            345 ;	../gameboard.c:84: for(i = y0+1; i <= y1-1; i++){
+   0146 E5*01               346 	mov	a,_GMB_draw_PARM_2
+   0148 04                  347 	inc	a
+   0149 FB                  348 	mov	r3,a
+   014A                     349 00121$:
+   014A AC*03               350 	mov	r4,_GMB_draw_PARM_4
+   014C 7D 00               351 	mov	r5,#0x00
+   014E 1C                  352 	dec	r4
+   014F BC FF 01            353 	cjne	r4,#0xff,00152$
+   0152 1D                  354 	dec	r5
+   0153                     355 00152$:
+   0153 8B 06               356 	mov	ar6,r3
+   0155 7F 00               357 	mov	r7,#0x00
+   0157 C3                  358 	clr	c
+   0158 EC                  359 	mov	a,r4
+   0159 9E                  360 	subb	a,r6
+   015A ED                  361 	mov	a,r5
+   015B 64 80               362 	xrl	a,#0x80
+   015D 8F F0               363 	mov	b,r7
+   015F 63 F0 80            364 	xrl	b,#0x80
+   0162 95 F0               365 	subb	a,b
+   0164 40 24               366 	jc	00125$
+                            367 ;	../gameboard.c:85: T6963C_writeAt(x0, i, OBSTACLE_D);
+   0166 8B*00               368 	mov	_T6963C_writeAt_PARM_2,r3
+   0168 75*00 A4            369 	mov	_T6963C_writeAt_PARM_3,#0xA4
+   016B 8A 82               370 	mov	dpl,r2
+   016D C0 02               371 	push	ar2
+   016F C0 03               372 	push	ar3
+   0171 12s00r00            373 	lcall	_T6963C_writeAt
+   0174 D0 03               374 	pop	ar3
+                            375 ;	../gameboard.c:86: T6963C_writeAt(x1, i, OBSTACLE_E);	   
+   0176 8B*00               376 	mov	_T6963C_writeAt_PARM_2,r3
+   0178 75*00 A5            377 	mov	_T6963C_writeAt_PARM_3,#0xA5
+   017B 85*02 82            378 	mov	dpl,_GMB_draw_PARM_3
+   017E C0 03               379 	push	ar3
+   0180 12s00r00            380 	lcall	_T6963C_writeAt
+   0183 D0 03               381 	pop	ar3
+   0185 D0 02               382 	pop	ar2
+                            383 ;	../gameboard.c:84: for(i = y0+1; i <= y1-1; i++){
+   0187 0B                  384 	inc	r3
+   0188 80 C0               385 	sjmp	00121$
+   018A                     386 00125$:
+   018A 22                  387 	ret
+                            388 ;------------------------------------------------------------
+                            389 ;Allocation info for local variables in function 'GMB_clear'
+                            390 ;------------------------------------------------------------
+                            391 ;y0                        Allocated with name '_GMB_clear_PARM_2'
+                            392 ;x1                        Allocated with name '_GMB_clear_PARM_3'
+                            393 ;y1                        Allocated with name '_GMB_clear_PARM_4'
+                            394 ;x0                        Allocated to registers r2 
+                            395 ;i                         Allocated to registers r2 
+                            396 ;j                         Allocated to registers r3 
+                            397 ;------------------------------------------------------------
+                            398 ;	../gameboard.c:97: void GMB_clear(unsigned char x0, unsigned char y0, unsigned char x1, unsigned char y1) {
+                            399 ;	-----------------------------------------
+                            400 ;	 function GMB_clear
+                            401 ;	-----------------------------------------
+   018B                     402 _GMB_clear:
+   018B AA 82               403 	mov	r2,dpl
+                            404 ;	../gameboard.c:102: for(i = x0; i <= x1; i++){
+   018D                     405 00105$:
+   018D E5*05               406 	mov	a,_GMB_clear_PARM_3
+   018F B5 02 00            407 	cjne	a,ar2,00117$
+   0192                     408 00117$:
+   0192 40 21               409 	jc	00109$
+                            410 ;	../gameboard.c:103: for(j = y0; j <= y1; j++){
+   0194 AB*04               411 	mov	r3,_GMB_clear_PARM_2
+   0196                     412 00101$:
+   0196 E5*06               413 	mov	a,_GMB_clear_PARM_4
+   0198 B5 03 00            414 	cjne	a,ar3,00119$
+   019B                     415 00119$:
+   019B 40 15               416 	jc	00107$
+                            417 ;	../gameboard.c:104: T6963C_writeAt(i, j, EMPTY);
+   019D 8B*00               418 	mov	_T6963C_writeAt_PARM_2,r3
+   019F 75*00 00            419 	mov	_T6963C_writeAt_PARM_3,#0x00
+   01A2 8A 82               420 	mov	dpl,r2
+   01A4 C0 02               421 	push	ar2
+   01A6 C0 03               422 	push	ar3
+   01A8 12s00r00            423 	lcall	_T6963C_writeAt
+   01AB D0 03               424 	pop	ar3
+   01AD D0 02               425 	pop	ar2
+                            426 ;	../gameboard.c:103: for(j = y0; j <= y1; j++){
+   01AF 0B                  427 	inc	r3
+   01B0 80 E4               428 	sjmp	00101$
+   01B2                     429 00107$:
+                            430 ;	../gameboard.c:102: for(i = x0; i <= x1; i++){
+   01B2 0A                  431 	inc	r2
+   01B3 80 D8               432 	sjmp	00105$
+   01B5                     433 00109$:
+   01B5 22                  434 	ret
+                            435 ;------------------------------------------------------------
+                            436 ;Allocation info for local variables in function 'GMB_display'
+                            437 ;------------------------------------------------------------
+                            438 ;y0                        Allocated with name '_GMB_display_PARM_2'
+                            439 ;text                      Allocated with name '_GMB_display_PARM_3'
+                            440 ;x0                        Allocated to registers r2 
+                            441 ;x1                        Allocated to registers r4 
+                            442 ;y1                        Allocated to registers 
+                            443 ;taille                    Allocated with name '_GMB_display_taille_1_1'
+                            444 ;i                         Allocated to registers r5 
+                            445 ;------------------------------------------------------------
+                            446 ;	../gameboard.c:116: void GMB_display(unsigned char x0, unsigned char y0, char *text) {
+                            447 ;	-----------------------------------------
+                            448 ;	 function GMB_display
+                            449 ;	-----------------------------------------
+   01B6                     450 _GMB_display:
+   01B6 AA 82               451 	mov	r2,dpl
+                            452 ;	../gameboard.c:126: taille = strlen(text);
+   01B8 85*08 82            453 	mov	dpl,_GMB_display_PARM_3
+   01BB 85*09 83            454 	mov	dph,(_GMB_display_PARM_3 + 1)
+   01BE 85*0A F0            455 	mov	b,(_GMB_display_PARM_3 + 2)
+   01C1 C0 02               456 	push	ar2
+   01C3 12s00r00            457 	lcall	_strlen
+   01C6 AB 82               458 	mov	r3,dpl
+   01C8 D0 02               459 	pop	ar2
+                            460 ;	../gameboard.c:127: x1 = x0 + taille + 1;
+   01CA EB                  461 	mov	a,r3
+   01CB F5*0B               462 	mov	_GMB_display_taille_1_1,a
+   01CD 2A                  463 	add	a,r2
+   01CE 04                  464 	inc	a
+   01CF FC                  465 	mov	r4,a
+                            466 ;	../gameboard.c:136: for(i = 0; i < 3; i++){
+   01D0 7D 00               467 	mov	r5,#0x00
+   01D2                     468 00109$:
+   01D2 BD 03 00            469 	cjne	r5,#0x03,00128$
+   01D5                     470 00128$:
+   01D5 40 03               471 	jc	00129$
+   01D7 02s02r75            472 	ljmp	00112$
+   01DA                     473 00129$:
+                            474 ;	../gameboard.c:137: if(i == 0){
+   01DA ED                  475 	mov	a,r5
+   01DB 70 2C               476 	jnz	00107$
+                            477 ;	../gameboard.c:138: T6963C_writeAt(x0, y0, OBSTACLE_A);
+   01DD 85*07*00            478 	mov	_T6963C_writeAt_PARM_2,_GMB_display_PARM_2
+   01E0 75*00 A1            479 	mov	_T6963C_writeAt_PARM_3,#0xA1
+   01E3 8A 82               480 	mov	dpl,r2
+   01E5 C0 02               481 	push	ar2
+   01E7 C0 04               482 	push	ar4
+   01E9 C0 05               483 	push	ar5
+   01EB 12s00r00            484 	lcall	_T6963C_writeAt
+   01EE D0 05               485 	pop	ar5
+   01F0 D0 04               486 	pop	ar4
+                            487 ;	../gameboard.c:139: T6963C_writeAt(x1, y0, OBSTACLE_C);
+   01F2 85*07*00            488 	mov	_T6963C_writeAt_PARM_2,_GMB_display_PARM_2
+   01F5 75*00 A3            489 	mov	_T6963C_writeAt_PARM_3,#0xA3
+   01F8 8C 82               490 	mov	dpl,r4
+   01FA C0 04               491 	push	ar4
+   01FC C0 05               492 	push	ar5
+   01FE 12s00r00            493 	lcall	_T6963C_writeAt
+   0201 D0 05               494 	pop	ar5
+   0203 D0 04               495 	pop	ar4
+   0205 D0 02               496 	pop	ar2
+   0207 80 68               497 	sjmp	00111$
+   0209                     498 00107$:
+                            499 ;	../gameboard.c:140: }else if(i == 1){
+   0209 BD 01 32            500 	cjne	r5,#0x01,00104$
+                            501 ;	../gameboard.c:141: T6963C_writeAt(x0, y0+i, OBSTACLE_D);
+   020C ED                  502 	mov	a,r5
+   020D 25*07               503 	add	a,_GMB_display_PARM_2
+   020F FE                  504 	mov	r6,a
+   0210 8E*00               505 	mov	_T6963C_writeAt_PARM_2,r6
+   0212 75*00 A4            506 	mov	_T6963C_writeAt_PARM_3,#0xA4
+   0215 8A 82               507 	mov	dpl,r2
+   0217 C0 02               508 	push	ar2
+   0219 C0 04               509 	push	ar4
+   021B C0 05               510 	push	ar5
+   021D C0 06               511 	push	ar6
+   021F 12s00r00            512 	lcall	_T6963C_writeAt
+   0222 D0 06               513 	pop	ar6
+   0224 D0 05               514 	pop	ar5
+   0226 D0 04               515 	pop	ar4
+                            516 ;	../gameboard.c:142: T6963C_writeAt(x1, y0+i, OBSTACLE_E);
+   0228 8E*00               517 	mov	_T6963C_writeAt_PARM_2,r6
+   022A 75*00 A5            518 	mov	_T6963C_writeAt_PARM_3,#0xA5
+   022D 8C 82               519 	mov	dpl,r4
+   022F C0 04               520 	push	ar4
+   0231 C0 05               521 	push	ar5
+   0233 12s00r00            522 	lcall	_T6963C_writeAt
+   0236 D0 05               523 	pop	ar5
+   0238 D0 04               524 	pop	ar4
+   023A D0 02               525 	pop	ar2
+   023C 80 33               526 	sjmp	00111$
+   023E                     527 00104$:
+                            528 ;	../gameboard.c:143: } else if(i == 2){
+   023E BD 02 30            529 	cjne	r5,#0x02,00111$
+                            530 ;	../gameboard.c:144: T6963C_writeAt(x0, y0+i, OBSTACLE_F);
+   0241 ED                  531 	mov	a,r5
+   0242 25*07               532 	add	a,_GMB_display_PARM_2
+   0244 FE                  533 	mov	r6,a
+   0245 8E*00               534 	mov	_T6963C_writeAt_PARM_2,r6
+   0247 75*00 A6            535 	mov	_T6963C_writeAt_PARM_3,#0xA6
+   024A 8A 82               536 	mov	dpl,r2
+   024C C0 02               537 	push	ar2
+   024E C0 04               538 	push	ar4
+   0250 C0 05               539 	push	ar5
+   0252 C0 06               540 	push	ar6
+   0254 12s00r00            541 	lcall	_T6963C_writeAt
+   0257 D0 06               542 	pop	ar6
+   0259 D0 05               543 	pop	ar5
+   025B D0 04               544 	pop	ar4
+                            545 ;	../gameboard.c:145: T6963C_writeAt(x1, y0+i, OBSTACLE_H);
+   025D 8E*00               546 	mov	_T6963C_writeAt_PARM_2,r6
+   025F 75*00 A8            547 	mov	_T6963C_writeAt_PARM_3,#0xA8
+   0262 8C 82               548 	mov	dpl,r4
+   0264 C0 04               549 	push	ar4
+   0266 C0 05               550 	push	ar5
+   0268 12s00r00            551 	lcall	_T6963C_writeAt
+   026B D0 05               552 	pop	ar5
+   026D D0 04               553 	pop	ar4
+   026F D0 02               554 	pop	ar2
+   0271                     555 00111$:
+                            556 ;	../gameboard.c:136: for(i = 0; i < 3; i++){
+   0271 0D                  557 	inc	r5
+   0272 02s01rD2            558 	ljmp	00109$
+   0275                     559 00112$:
+                            560 ;	../gameboard.c:151: for(i = 0; i < taille; i++){
+   0275 0A                  561 	inc	r2
+   0276 E5*07               562 	mov	a,_GMB_display_PARM_2
+   0278 04                  563 	inc	a
+   0279 FC                  564 	mov	r4,a
+   027A 74 02               565 	mov	a,#0x02
+   027C 25*07               566 	add	a,_GMB_display_PARM_2
+   027E FD                  567 	mov	r5,a
+   027F 7E 00               568 	mov	r6,#0x00
+   0281                     569 00113$:
+   0281 EE                  570 	mov	a,r6
+   0282 B5*0B 00            571 	cjne	a,_GMB_display_taille_1_1,00135$
+   0285                     572 00135$:
+   0285 50 65               573 	jnc	00117$
+                            574 ;	../gameboard.c:152: T6963C_writeAt(x0+1+i, y0,   OBSTACLE_B);
+   0287 EE                  575 	mov	a,r6
+   0288 2A                  576 	add	a,r2
+   0289 FF                  577 	mov	r7,a
+   028A 85*07*00            578 	mov	_T6963C_writeAt_PARM_2,_GMB_display_PARM_2
+   028D 75*00 A2            579 	mov	_T6963C_writeAt_PARM_3,#0xA2
+   0290 8F 82               580 	mov	dpl,r7
+   0292 C0 02               581 	push	ar2
+   0294 C0 04               582 	push	ar4
+   0296 C0 05               583 	push	ar5
+   0298 C0 06               584 	push	ar6
+   029A C0 07               585 	push	ar7
+   029C 12s00r00            586 	lcall	_T6963C_writeAt
+   029F D0 07               587 	pop	ar7
+   02A1 D0 06               588 	pop	ar6
+   02A3 D0 05               589 	pop	ar5
+   02A5 D0 04               590 	pop	ar4
+                            591 ;	../gameboard.c:153: T6963C_writeAt(x0+1+i, y0+1, text[i]-32);
+   02A7 EE                  592 	mov	a,r6
+   02A8 25*08               593 	add	a,_GMB_display_PARM_3
+   02AA F8                  594 	mov	r0,a
+   02AB E4                  595 	clr	a
+   02AC 35*09               596 	addc	a,(_GMB_display_PARM_3 + 1)
+   02AE F9                  597 	mov	r1,a
+   02AF AB*0A               598 	mov	r3,(_GMB_display_PARM_3 + 2)
+   02B1 88 82               599 	mov	dpl,r0
+   02B3 89 83               600 	mov	dph,r1
+   02B5 8B F0               601 	mov	b,r3
+   02B7 12s00r00            602 	lcall	__gptrget
+   02BA 24 E0               603 	add	a,#0xe0
+   02BC F5*00               604 	mov	_T6963C_writeAt_PARM_3,a
+   02BE 8C*00               605 	mov	_T6963C_writeAt_PARM_2,r4
+   02C0 8F 82               606 	mov	dpl,r7
+   02C2 C0 04               607 	push	ar4
+   02C4 C0 05               608 	push	ar5
+   02C6 C0 06               609 	push	ar6
+   02C8 C0 07               610 	push	ar7
+   02CA 12s00r00            611 	lcall	_T6963C_writeAt
+   02CD D0 07               612 	pop	ar7
+   02CF D0 06               613 	pop	ar6
+   02D1 D0 05               614 	pop	ar5
+                            615 ;	../gameboard.c:154: T6963C_writeAt(x0+1+i, y0+2, OBSTACLE_G);
+   02D3 8D*00               616 	mov	_T6963C_writeAt_PARM_2,r5
+   02D5 75*00 A7            617 	mov	_T6963C_writeAt_PARM_3,#0xA7
+   02D8 8F 82               618 	mov	dpl,r7
+   02DA C0 05               619 	push	ar5
+   02DC C0 06               620 	push	ar6
+   02DE 12s00r00            621 	lcall	_T6963C_writeAt
+   02E1 D0 06               622 	pop	ar6
+   02E3 D0 05               623 	pop	ar5
+   02E5 D0 04               624 	pop	ar4
+   02E7 D0 02               625 	pop	ar2
+                            626 ;	../gameboard.c:151: for(i = 0; i < taille; i++){
+   02E9 0E                  627 	inc	r6
+   02EA 80 95               628 	sjmp	00113$
+   02EC                     629 00117$:
+   02EC 22                  630 	ret
+                            631 	.area CSEG    (CODE)
+                            632 	.area CONST   (CODE)
+                            633 	.area XINIT   (CODE)
+                            634 	.area CABS    (ABS,CODE)

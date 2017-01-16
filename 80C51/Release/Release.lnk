@@ -1,0 +1,25 @@
+-myux
+-i ./Release.hex
+-Y
+-b HOME = 0x0000
+-b ISEG = 0x0000
+-b BSEG = 0x0000
+-u
+-k C:\Program Files (x86)\SDCC\bin\..\lib\small
+-l mcs51
+-l libsdcc
+-l libint
+-l liblong
+-l libfloat
+main.rel
+t6963c.rel
+STDIO-~1.rel
+test.rel
+buffer.rel
+snake.rel
+keyboard.rel
+fruit.rel
+bdd.rel
+GAMEBO~1.rel
+
+-e

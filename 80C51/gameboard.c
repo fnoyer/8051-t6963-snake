@@ -7,10 +7,10 @@
 #define ROM_CG_ADDRESS 0x0000
 
 /**
- * Copie la définition d'un caractère depuis la ROM vers la zone de définition
- * des caractères du T6963C.
- * @param positionInRom Position du caractère dans la ROM.
- * @param cgCode Code du caractère dans le t6963c.
+ * Copie la dÃ©finition d'un caractÃ¨re depuis la ROM vers la zone de dÃ©finition
+ * des caractÃ¨res du T6963C.
+ * @param positionInRom Position du caractÃ¨re dans la ROM.
+ * @param cgCode Code du caractÃ¨re dans le t6963c.
  */
 void GMB_copyFromRomToCg(unsigned char positionInRom, unsigned char cgCode) {
 	unsigned char *rom_cg_address = (unsigned char __xdata *) (ROM_CG_ADDRESS + positionInRom * 8);
@@ -19,7 +19,7 @@ void GMB_copyFromRomToCg(unsigned char positionInRom, unsigned char cgCode) {
 }
 
 /**
- * Initialise les caractères utilisés pendant le jeu.
+ * Initialise les caractÃ¨res utilisÃ©s pendant le jeu.
  */
 void GMB_initialize() {
 	GMB_copyFromRomToCg( 0, OBSTACLE_A);
@@ -40,35 +40,112 @@ void GMB_initialize() {
 }
 
 /**
- * Dessine un rectangle entre les coordonnées spécifiées.
- * Le carré est dessiné avec des caractères OBSTACLE_*, pour
+ * Dessine un rectangle entre les coordonnÃ©es spÃ©cifiÃ©es.
+ * Le carrÃ© est dessinÃ© avec des caractÃ¨res OBSTACLE_*, pour
  * que le serpent ne puisse pas le traverser.
- * @param x0, y0: Coordonnées de l'angle supérieur droit.
- * @param x1, y1: Coordonnées de l'angle inférieur gauche.
+ * @param x0, y0: CoordonnÃ©es de l'angle supÃ©rieur droit.
+ * @param x1, y1: CoordonnÃ©es de l'angle infÃ©rieur gauche.
  */
 void GMB_draw(unsigned char x0, unsigned char y0, unsigned char x1, unsigned char y1) {
-	// À faire
+  
+   unsigned char i;
+   unsigned char j; 	
+   
+	// Affichage de la première ligne
+   	for(i = x0; i <= x1; i++){
+	    if(i == x0){
+	       T6963C_writeAt(x0, y0, OBSTACLE_A);
+	    }
+	    else if (i < x1){
+	       T6963C_writeAt(i, y0, OBSTACLE_B);
+	    }
+	    else{
+	       T6963C_writeAt(x1, y0, OBSTACLE_C);
+	    }
+	 }
+	
+	// Affichage de la derniere ligne
+	for(i = x0; i <= x1; i++){
+	    if(i == x0){
+	       T6963C_writeAt(x0, y1, OBSTACLE_F);
+	    }
+	    else if (i < x1){
+	       T6963C_writeAt(i, y1, OBSTACLE_G);
+	    }
+	    else{
+	       T6963C_writeAt(x1, y1, OBSTACLE_H);
+	    }
+	}
+	
+	// Affichage des deux côtés
+	for(i = y0+1; i <= y1-1; i++){
+	   T6963C_writeAt(x0, i, OBSTACLE_D);
+	   T6963C_writeAt(x1, i, OBSTACLE_E);	   
+	}
+	
 }
 
 /**
- * Remplit avec des espaces le rectangle défini par les coordonnées.
- * Permet de nettoyer l'intérieur du rectangle dessiné avec GMB_draw.
- * @param x0, y0: Coordonnées de l'angle supérieur droit.
- * @param x1, y1: Coordonnées de l'angle inférieur gauche.
+ * Remplit avec des espaces le rectangle dÃ©fini par les coordonnÃ©es.
+ * Permet de nettoyer l'intÃ©rieur du rectangle dessinÃ© avec GMB_draw.
+ * @param x0, y0: CoordonnÃ©es de l'angle supÃ©rieur droit.
+ * @param x1, y1: CoordonnÃ©es de l'angle infÃ©rieur gauche.
  */
 void GMB_clear(unsigned char x0, unsigned char y0, unsigned char x1, unsigned char y1) {
-	// À faire.
+   unsigned char i;
+   unsigned char j;
+   
+  // Netoyage entre les borne x0,x1 y0,y1 à l'aide du caractère EMPTY
+  for(i = x0; i <= x1; i++){
+	  for(j = y0; j <= y1; j++){
+		  T6963C_writeAt(i, j, EMPTY);
+	  }
+  }
 }
 
 /**
- * Affiche un texte entouré d'un rectangle.
- * La largeur du rectangle est définie par la longueur du texte.
- * La fonction ne vérifie pas si le texte dépasse les bords de l'écran.
- * @param x0, y0 L'angle supérieur droit du rectangle.
- * @param text Le texte à afficher.
+ * Affiche un texte entourÃ© d'un rectangle.
+ * La largeur du rectangle est dÃ©finie par la longueur du texte.
+ * La fonction ne vÃ©rifie pas si le texte dÃ©passe les bords de l'Ã©cran.
+ * @param x0, y0 L'angle supÃ©rieur droit du rectangle.
+ * @param text Le texte Ã  afficher.
  */
 void GMB_display(unsigned char x0, unsigned char y0, char *text) {
-	// À faire.
+	
+	// Ã€ faire
+	char x1;
+	char y1;
+
+	unsigned char taille;
+	unsigned char i;
+   
+	// Calcul et Definition des coordonées des bords inférieurs
+	taille = strlen(text);
+	x1 = x0 + taille + 1;
+	y1 = y0 + 2;
+	
+	
+	// Affichage des deux côtés
+	for(i = 0; i < 3; i++){
+	   if(i == 0){
+	      T6963C_writeAt(x0, y0, OBSTACLE_A);
+	      T6963C_writeAt(x1, y0, OBSTACLE_C);
+	   }else if(i == 1){
+	      T6963C_writeAt(x0, y0+i, OBSTACLE_D);
+	      T6963C_writeAt(x1, y0+i, OBSTACLE_E);
+	   } else if(i == 2){
+	      T6963C_writeAt(x0, y0+i, OBSTACLE_F);
+	      T6963C_writeAt(x1, y0+i, OBSTACLE_H);
+	   }
+	   
+	}
+	
+	// Affichage des Lignes
+	for(i = 0; i < taille; i++){
+	   T6963C_writeAt(x0+1+i, y0,   OBSTACLE_B);
+	   T6963C_writeAt(x0+1+i, y0+1, text[i]-32);
+	   T6963C_writeAt(x0+1+i, y0+2, OBSTACLE_G);
+	}
 }
 
 #ifdef TEST
